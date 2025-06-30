@@ -11,7 +11,7 @@ const csv = require('csvtojson');
 const XLSX = require('xlsx');
 require('dotenv').config();
 const app = express();
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 const { v4: uuidv4 } = require('uuid');
 const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
