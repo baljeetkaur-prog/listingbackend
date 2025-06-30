@@ -12,7 +12,7 @@ const XLSX = require('xlsx');
 require('dotenv').config();
 const app = express();
 app.use(cors({
-  origin: allowedOrigins,
+  origin: '*',
   credentials: true,
 }));
 app.use(express.json());
