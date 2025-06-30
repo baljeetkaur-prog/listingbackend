@@ -79,12 +79,11 @@ const adminAuth = (req, res, next) => {
 };
 
 const uploadDir = path.join(__dirname, 'uploads');
-app.use((req, res, next) => {
+app.use('/uploads', (req, res, next) => {
   res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   next();
-});
-
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+}, express.static(path.join(__dirname, 'uploads')));
 
 
 if (!fs.existsSync(uploadDir)) {
