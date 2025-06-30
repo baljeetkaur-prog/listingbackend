@@ -11,6 +11,12 @@ const csv = require('csvtojson');
 const XLSX = require('xlsx');
 require('dotenv').config();
 const app = express();
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 9000;
 const { v4: uuidv4 } = require('uuid');
 const authMiddleware = async (req, res, next) => {
@@ -73,9 +79,6 @@ const adminAuth = (req, res, next) => {
 };
 
 const uploadDir = path.join(__dirname, 'uploads');
-
-app.use(cors());
-app.use(express.json());
 app.use((req, res, next) => {
   res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
   next();
